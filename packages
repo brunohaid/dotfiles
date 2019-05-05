@@ -1,0 +1,21 @@
+# List of debian packages:
+
+awesome
+awesome-extra
+network-manager
+nm-applet
+acpi
+acpid
+xkeybindings
+xbacklight
+pulseaudio
+pactl
+volti
+
+# Awesome plugins
+battery-widget
+
+# Need to be added to sources.list
+
+google-chrome
+sublime-text
