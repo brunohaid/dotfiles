@@ -1,0 +1,11 @@
+Xft.dpi: 140
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+! Use a truetype font and size.
+xterm*faceName: Monospace
+xterm*faceSize: 12
