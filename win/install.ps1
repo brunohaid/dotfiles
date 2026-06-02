@@ -1,6 +1,13 @@
 $ErrorActionPreference = "Stop"
 
 $repo = Resolve-Path (Join-Path $PSScriptRoot "..")
+$ompInit = 'oh-my-posh init pwsh --config "$HOME\dotfiles\omp\brunoshell.omp.json" | Invoke-Expression'
+
+try {
+    Set-ExecutionPolicy -Scope CurrentUser RemoteSigned -Force
+} catch {
+    Write-Warning "Could not set PowerShell execution policy automatically. If profile scripts do not load, run: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned"
+}
 
 winget install --id Microsoft.PowerShell --source winget --accept-package-agreements --accept-source-agreements
 winget install --id JanDeDobbeleer.OhMyPosh --source winget --accept-package-agreements --accept-source-agreements
@@ -12,10 +19,18 @@ Get-ChildItem $fonts -Filter "*.ttf" | ForEach-Object {
     $fontFolder.CopyHere($_.FullName, 0x10)
 }
 
-$profileDir = Join-Path $HOME "Documents\PowerShell"
-New-Item -ItemType Directory -Force -Path $profileDir | Out-Null
-Copy-Item (Join-Path $repo "win\powershell\Microsoft.PowerShell_profile.ps1") `
-    (Join-Path $profileDir "Microsoft.PowerShell_profile.ps1") -Force
+$documentsDir = [Environment]::GetFolderPath("MyDocuments")
+foreach ($profileDirName in @("PowerShell", "WindowsPowerShell")) {
+    $profileDir = Join-Path $documentsDir $profileDirName
+    $profilePath = Join-Path $profileDir "Microsoft.PowerShell_profile.ps1"
+    New-Item -ItemType Directory -Force -Path $profileDir | Out-Null
+    if (-not (Test-Path $profilePath)) {
+        New-Item -ItemType File -Path $profilePath | Out-Null
+    }
+    if (-not (Select-String -Path $profilePath -SimpleMatch $ompInit -Quiet)) {
+        Add-Content -Path $profilePath -Value "`n$ompInit"
+    }
+}
 
 Copy-Item (Join-Path $repo "win\git\.gitconfig") `
     (Join-Path $HOME ".gitconfig") -Force
