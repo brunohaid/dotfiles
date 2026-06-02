@@ -11,5 +11,6 @@ Having been an avid Thinkpad user for nearly 20 years now, it was @sushimako and
 As always standing on the shoulder of giants:
 
 * https://news.ycombinator.com/item?id=11071754 & https://www.atlassian.com/git/tutorials/dotfiles for the git setup
+* Please buy your copy of Berkeley Mono at https://usgraphics.com/products/berkeley-mono 
 
 [1] https://www.phaidon.com/store/design/richard-sapper-9780714871202/

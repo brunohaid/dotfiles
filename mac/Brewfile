@@ -1,0 +1,5 @@
+brew "zsh"
+brew "oh-my-posh"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
+cask "iterm2"
