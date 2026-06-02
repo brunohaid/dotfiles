@@ -1,0 +1,7 @@
+[user]
+	name = Bruno Haid
+	email = bruno.haid@gmail.com
+[core]
+	sshCommand = ssh -i ~/.ssh/github
+[submodule]
+	recurse = true
